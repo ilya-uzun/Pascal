@@ -1,20 +1,23 @@
-import xml.etree.ElementTree as XmlElementTree
-import httplib2
-import uuid
-from config import ***
+# Работа с файловым хранилищем с использованием API
+
+import xml.etree.ElementTree as XmlElementTree # реализация API для работы с XML 
+import httplib2 # соединение с сервером
+import uuid # генерирует случаные индитификаторы, используя MAC-адрес и компонент времени
+from config import *** # Подключение конфигураций
  
 ***_HOST = '***'
 ***_PATH = '/***_xml'
 CHUNK_SIZE = 1024 ** 2
- 
+
+# peech_to_text - речь к тексту 
 def speech_to_text(filename=None, bytes=None, request_id=uuid.uuid4().hex, topic='notes', lang='ru-RU',
                    key=***_API_KEY):
   
     if filename:
         with open(filename, 'br') as file:
             bytes = file.read()
-    if not bytes:
-        raise Exception('Neither file name nor bytes provided.')
+    if not bytes: # если фаил пуст
+        raise Exception('Neither file name nor bytes provided.') # Вызываем обработчик исключений
  
   
     bytes = convert_to_pcm16b16000r(in_bytes=bytes)
